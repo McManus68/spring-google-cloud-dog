@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: spring-cloud-dog
+build:
+  artifacts:
+  - image: gcr.io/spring-boot-microservice-tuto/dog
+    context: .
+    jib:
+      project: com.mcmanus:dog
+deploy:
+  kubectl:
+    manifests:
+    - src/main/resources/deployment.yaml
+    - src/main/resources/service.yaml
